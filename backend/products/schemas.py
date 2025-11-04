@@ -8,5 +8,5 @@ class ProductSchema(ModelSchema):
         
 class ProductCreateSchema(ModelSchema):
     class Meta:
-        model : Products
+        model = Products
         fields = ['name','description','price','created_at']
