@@ -13,7 +13,7 @@ def list_products(request):
 
 
 #Endpoint to create products
-@app.post('/products', response=ProductSchema)
+@app.post('/products', response=ProductSchema, description='Endopint to create products')
 def create_product(request, data: ProductCreateSchema):
     producto = Products.objects.create(**data.dict)
     return producto 
