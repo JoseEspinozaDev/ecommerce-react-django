@@ -5,8 +5,10 @@ class ProductSchema(ModelSchema):
     class Meta:
         model = Products
         fields = ['id','name','description','price','created_at']
-        
+ 
+ 
 class ProductCreateSchema(ModelSchema):
     class Meta:
         model = Products
-        fields = ['name','description','price','created_at']
+        fields = ['name','description','price','created_at'] 
+ 

@@ -4,5 +4,6 @@ from .api import app
 
 urlpatterns = [
     path('',views.index, name='home'),
-    path('api/',app.urls)
-] 
+    path('api/', app.urls) 
+   
+]
