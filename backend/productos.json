@@ -1,0 +1,222 @@
+[
+  {
+    "model": "products.products",
+    "pk": 1,
+    "fields": {
+      "name": "HP Laptop",
+      "description": "Laptop HP Pavilion 15.6\" Core i5, 8GB RAM, 512GB SSD",
+      "price": 1200,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/hp_laptop.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 2,
+    "fields": {
+      "name": "Logitech Mouse",
+      "description": "Mouse inalámbrico Logitech M185",
+      "price": 25,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/logitech_mouse.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 3,
+    "fields": {
+      "name": "Samsung Monitor",
+      "description": "Monitor Samsung Curvo 24\" Full HD",
+      "price": 200,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/samsung_monitor.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 4,
+    "fields": {
+      "name": "Apple iPhone 15",
+      "description": "iPhone 15 128GB, color negro",
+      "price": 999,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/iphone15.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 5,
+    "fields": {
+      "name": "Samsung Galaxy S23",
+      "description": "Galaxy S23 128GB, color plata",
+      "price": 899,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/galaxy_s23.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 6,
+    "fields": {
+      "name": "Sony Headphones",
+      "description": "Auriculares Sony WH-1000XM4, cancelación de ruido",
+      "price": 350,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/sony_headphones.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 7,
+    "fields": {
+      "name": "Dell XPS 13",
+      "description": "Laptop Dell XPS 13, Core i7, 16GB RAM, 512GB SSD",
+      "price": 1500,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/dell_xps13.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 8,
+    "fields": {
+      "name": "Amazon Echo Dot",
+      "description": "Altavoz inteligente Alexa Echo Dot 4ª Gen",
+      "price": 50,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/echo_dot.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 9,
+    "fields": {
+      "name": "Nintendo Switch",
+      "description": "Consola Nintendo Switch OLED 64GB",
+      "price": 350,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/nintendo_switch.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 10,
+    "fields": {
+      "name": "Canon EOS 2000D",
+      "description": "Cámara réflex Canon 2000D, 24MP, lente 18-55mm",
+      "price": 500,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/canon_eos2000d.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 11,
+    "fields": {
+      "name": "HP DeskJet 2710",
+      "description": "Impresora HP DeskJet 2710 multifunción",
+      "price": 80,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/hp_deskjet.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 12,
+    "fields": {
+      "name": "Logitech Keyboard",
+      "description": "Teclado Logitech K120, USB, resistente a salpicaduras",
+      "price": 20,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/logitech_keyboard.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 13,
+    "fields": {
+      "name": "Apple MacBook Air",
+      "description": "MacBook Air M2, 8GB RAM, 256GB SSD",
+      "price": 1300,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/macbook_air.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 14,
+    "fields": {
+      "name": "Samsung SSD 1TB",
+      "description": "Disco sólido Samsung 1TB NVMe",
+      "price": 120,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/samsung_ssd.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 15,
+    "fields": {
+      "name": "Xiaomi Mi Band 7",
+      "description": "Smartband Xiaomi Mi Band 7, seguimiento de actividad",
+      "price": 50,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/xiaomi_band7.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 16,
+    "fields": {
+      "name": "Google Pixel 8",
+      "description": "Pixel 8 128GB, cámara avanzada",
+      "price": 799,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/pixel8.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 17,
+    "fields": {
+      "name": "Lenovo ThinkPad X1",
+      "description": "Laptop Lenovo ThinkPad X1, Core i7, 16GB RAM, 512GB SSD",
+      "price": 1600,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/thinkpad_x1.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 18,
+    "fields": {
+      "name": "Bose SoundLink",
+      "description": "Altavoz Bluetooth Bose SoundLink Color II",
+      "price": 120,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/bose_soundlink.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 19,
+    "fields": {
+      "name": "Microsoft Surface Pro 9",
+      "description": "Tablet Laptop Surface Pro 9, Core i5, 8GB RAM, 256GB SSD",
+      "price": 1100,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/surface_pro9.jpg"
+    }
+  },
+  {
+    "model": "products.products",
+    "pk": 20,
+    "fields": {
+      "name": "Razer Gaming Mouse",
+      "description": "Mouse Razer DeathAdder V2, sensor óptico 20K DPI",
+      "price": 70,
+      "created_at": "2025-11-05T13:43:15.046Z",
+      "img_products": "products/razer_mouse.jpg"
+    }
+  }
+]
