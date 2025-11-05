@@ -12,7 +12,16 @@ def list_products(request):
     productos = Products.objects.all()
     return productos
 
-
+#Endpoint to get product byID
+@app.get('/products/{product_id}', response=ProductSchema)
+def list_products_by_id(request, product_id: int):
+    productos = get_object_or_404(Products, id= product_id)
+    return productos
+    
+    
+    
+    
+    
 #Endpoint to create products
 @app.post('/products', response=ProductSchema)
 def create_product(request, data: ProductInSchema):
