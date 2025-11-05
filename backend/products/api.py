@@ -30,7 +30,7 @@ def update_product(request, product_id: int,  data: ProductInSchema):
     return producto
 
 #Endpoint to delete products
-@app.delete('/products/{product_id}')
+@app.delete('/products/{product_id}', description='Endpoint to delete products')
 def delete_product(request,product_id: int, data: ProductInSchema ):
     producto = get_object_or_404(Products, id=product_id)
     producto.delete() 
