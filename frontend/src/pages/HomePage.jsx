@@ -1,20 +1,22 @@
-import { NavLink } from "react-router-dom";
+import CategorySection from "../components/CategorySection";
 
 function HomePage() {
   return (
-    <div className="bg-light text-center py-5">
-      <div className="container">
-        <h1 className="display-4 fw-bold">Bienvenido a MyShop 🛒</h1>
-        <p className="lead text-muted">
-          Los mejores productos al mejor precio — directo a tu hogar.
-        </p>
+    <>
+      <div className="bg-light text-center py-5">
+        <div className="container">
+          <h1 className="display-4 fw-bold">Bienvenido a MyShop 🛒</h1>
+          <p className="lead text-muted">
+            Los mejores productos al mejor precio — directo a tu hogar.
+          </p>
 
-        <NavLink className="btn btn-primary btn-lg mt-3" to="/products">
-          Ver productos
-        </NavLink>
-         
+          <a href="/productos" className="btn btn-primary btn-lg mt-3">
+            Ver Productos
+          </a>
+        </div>
       </div>
-    </div>
+      <CategorySection />
+    </>
   );
 }
 

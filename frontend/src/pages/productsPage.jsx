@@ -10,7 +10,7 @@ function ProductsPage() {
     const fetchProducts = async () => {
       try {
         const data = await getProducts();
-        setProductos(data.slice(0,6));
+        setProductos(data);
       } catch (error) {
         console.error("Error al cargar productos:", error);
       } finally {
