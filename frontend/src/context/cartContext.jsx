@@ -1,10 +1,8 @@
-// src/context/CartContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
-export function CartProvider({ children }) {
-  // inicializamos desde localStorage si existe, sino []
+const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     try {
       const raw = localStorage.getItem("cart_v1");
@@ -14,44 +12,33 @@ export function CartProvider({ children }) {
     }
   });
 
-  // persistir cada vez que cart cambia
   useEffect(() => {
     try {
       localStorage.setItem("cart_v1", JSON.stringify(cart));
     } catch {}
   }, [cart]);
 
-  // addToCart usando actualización funcional y comparando por id
   const addToCart = (product, qty = 1) => {
-    if (!product || product.id === undefined) {
-      console.warn("addToCart: producto inválido", product);
-      return;
-    }
-
+    if (!product || product.id === undefined) return;
     setCart((prev) => {
       const index = prev.findIndex((it) => it.id === product.id);
       if (index !== -1) {
-        // existe: devolver nuevo array con la cantidad incrementada
         return prev.map((it, i) =>
           i === index ? { ...it, quantity: (it.quantity || 1) + qty } : it
         );
-      } else {
-        // no existe: agregar copia del producto con quantity
-        const itemToAdd = { ...product, quantity: qty };
-        return [...prev, itemToAdd];
       }
+      return [...prev, { ...product, quantity: qty }];
     });
-    console.log(cart)
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((it) => it.id !== productId));
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((it) => it.id !== id));
   };
 
-  const updateQuantity = (productId, newQty) => {
+  const updateQuantity = (id, qty) => {
     setCart((prev) =>
       prev.map((it) =>
-        it.id === productId ? { ...it, quantity: Math.max(1, newQty) } : it
+        it.id === id ? { ...it, quantity: Math.max(1, qty) } : it
       )
     );
   };
@@ -67,8 +54,8 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-}
+};
 
-export function useCart() {
-  return useContext(CartContext);
-}
+const useCart = () => useContext(CartContext);
+
+export { CartProvider, useCart };
