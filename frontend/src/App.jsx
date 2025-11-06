@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import CartPage from "./pages/cartPage";
 import CategorySection from "./components/CategorySection";
 import NotFoundPage from "./components/NotFoundPage";
+import ContactForm from "./components/ContactForm";
 import { CartProvider } from "./context/CartContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/CategorySection" element={<CategorySection />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/carrito" element={<CartPage />} />
+          <Route path="/contacto" element={<ContactForm/>} />
         </Routes>
       </Router>
     </CartProvider>
