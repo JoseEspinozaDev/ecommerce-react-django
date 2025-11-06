@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-
+import { useCart } from "../context/CartContext";
 function Header() {
+
+  //destructurando el contexto
+  const {cart} = useCart()
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
@@ -25,6 +28,9 @@ function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/contacto">Contacto</Link>
+            </li>
+              <li className="nav-item">
+              <Link className="nav-link" to="/carrito">{cart.length === 0 ? '': cart.length}🛒</Link>
             </li>
           </ul>
         </div>
