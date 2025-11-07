@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { createClient } from "../api/contactApi";
 
 function ContactForm() {
-  const { register, handleSubmit, formState: { errors }, reset} = useForm();
+  const { register, handleSubmit, formState: { errors }} = useForm();
   const [loading, setLoading] = useState(false);
 
 
@@ -13,7 +13,6 @@ function ContactForm() {
         const response = await createClient(data);
         if (response.success) {
           alert("Se ha registrado correctamente");
-          reset()
         } else {
           alert("Error: " + result.error);
         }

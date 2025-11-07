@@ -7,7 +7,6 @@ import NotFoundPage from "./components/NotFoundPage";
 import ContactForm from "./components/ContactForm";
 import { CartProvider } from "./context/CartContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -15,14 +14,13 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route element={<ProtectedRoute/>}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/productos" element={<ProductsPage />} />
-            <Route path="/CategorySection" element={<CategorySection />} />
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/carrito" element={<CartPage />} />
-            <Route path="/contacto" element={<ContactForm />} />
-          </Route>
+          
+          <Route path="/" element={<HomePage />} />
+          <Route path="/productos" element={<ProductsPage />} />
+          <Route path="/CategorySection" element={<CategorySection />} />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/carrito" element={<CartPage />} />
+          <Route path="/contacto" element={<ContactForm/>} />
         </Routes>
       </Router>
     </CartProvider>
