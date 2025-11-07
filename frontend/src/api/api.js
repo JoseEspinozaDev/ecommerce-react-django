@@ -17,3 +17,14 @@ export const getProducts = async () => {
         throw error
     }
 }
+
+export const registerClient = async (data) =>{
+    try {
+        const response = await api.post('/products',data)
+        return response.data
+        console.log('Cliente registrado correctamente', JSON.stringify(response))
+    } catch (error) {
+        console.log('Error al registrar los datos del cliente')
+        throw error
+    }
+}

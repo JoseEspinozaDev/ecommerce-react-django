@@ -1,16 +1,32 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { createClient } from "../api/contactApi";
 
 function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset} = useForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+
+  const onSubmit = async (data) => {
+    setLoading(true)
+     try {
+        const response = await createClient(data);
+        if (response.success) {
+          alert("Se ha registrado correctamente");
+          reset()
+        } else {
+          alert("Error: " + result.error);
+        }
+        console.log(response);
+      } catch (error) {
+        console.log("Error: ", error);
+      }finally{
+        setLoading(false)
+      }
+
   };
+
+
   return (
     <div className="container">
       <h2 className="text-center mb-4">Contactanos</h2>
@@ -20,7 +36,7 @@ function ContactForm() {
       >
         {/* Nombre */}
         <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">
+          <label htmlFor="name" className="form-label">
             Nombre
           </label>
           <input
@@ -28,11 +44,31 @@ function ContactForm() {
             name=""
             id=""
             className="form-control"
-            {...register("nombre", { required: true })}
+            {...register("name", {
+              required: true,
+              maxLength: 10,
+              minLength: 3,
+              pattern: /^[A-Za-z]+$/i,
+            })}
           />
-          {errors.nombre && (
+          {errors?.name?.type === "required" && (
             <div className="alert alert-danger mt-2" role="alert">
               Campo nombre es requerido!
+            </div>
+          )}
+          {errors?.name?.type === "maxLength" && (
+            <div className="alert alert-danger mt-2" role="alert">
+              Nombre debe tener maximo de 10 caracteres!
+            </div>
+          )}
+          {errors?.name?.type === "pattern" && (
+            <div className="alert alert-danger mt-2" role="alert">
+              solo permite caracteres alfabetico!
+            </div>
+          )}
+          {errors?.name?.type === "minLength" && (
+            <div className="alert alert-danger mt-2" role="alert">
+              Nombre debe tener minimo de 3 caracteres!
             </div>
           )}
         </div>
@@ -75,9 +111,9 @@ function ContactForm() {
             </div>
           )}
         </div>
-        <div className="mb-3">
+        <div className="mb-3" disabled={loading}>
           <button className="btn btn-primary " type="submit">
-            Enviar
+              {loading ? "Enviando..." : "Guardar"}
           </button>
         </div>
       </form>
