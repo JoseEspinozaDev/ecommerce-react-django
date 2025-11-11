@@ -10,4 +10,5 @@ dependencies = [
     "django-cors-headers>=4.9.0",
     "django-crispy-forms>=2.4",
     "django-ninja>=1.4.5",
+    "pyjwt>=2.10.1",
 ]

@@ -7,24 +7,27 @@ export const api = axios.create({
 });
 
 
-export const getProducts = async () => {
-    try {
-        const response = await api.get("/products")
-        console.log(response)
-        return response.data
-    } catch (error) {
-        console.log('Error al obtener los datos')
-        throw error
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // El token expiró o no es válido
+      localStorage.removeItem("token");
+      window.location.href = "/login"; // Redirige al login
     }
-}
+    return Promise.reject(error);
+  }
+);
 
-export const registerClient = async (data) =>{
-    try {
-        const response = await api.post('/products',data)
-        return response.data
-        console.log('Cliente registrado correctamente', JSON.stringify(response))
-    } catch (error) {
-        console.log('Error al registrar los datos del cliente')
-        throw error
+// Agregar token automáticamente
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-}
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+

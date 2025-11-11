@@ -1,5 +1,12 @@
 from ninja import NinjaAPI
-from .schemas import ProductSchema , ProductInSchema, ContactSchema, ContactInSchema
+from ninja.security import HttpBearer
+from django.contrib.auth. models import User
+from django.contrib.auth import authenticate
+from .schemas import ProductSchema , ProductInSchema, ContactInSchema , UserSchema, TokenSchema
+from .utilities import create_jwt_token , decode_jwt_token
+from .jwt_decorators import jwt_required
+
+from ninja.security import HttpBearer
 from .models import Products, Contacts
 from django.shortcuts import get_object_or_404
 
@@ -50,3 +57,46 @@ def delete_product(request,product_id: int, data: ProductInSchema ):
 def create_client(request, data: ContactInSchema):
     client= Contacts.objects.create(**data.dict())
     return {'success': True, 'data': data.dict()}
+
+
+
+##Autenticacion
+
+#Registro
+@app.post('/register',response=TokenSchema)
+def register(request, data: UserSchema):
+    if User.objects.filter(username=data.username).exists():
+        return {'access': 'El usuario ya existe'}
+    
+    user = User.objects.create_user(username=data.username, password=data.password)
+    token = create_jwt_token(user.id)
+    return{'access': token}
+
+#Login
+@app.post('/login', response=TokenSchema)
+def login(request, data: UserSchema):
+    user = authenticate(username= data.username, password= data.password)
+    if not user:
+        return {'access': 'usuario o contraseña incorrecta'}
+    
+    token = create_jwt_token(user.id)
+    return {'access': token}
+
+
+# Endpoint protegido
+@app.get("/protected")
+@jwt_required
+def protected(request):
+    user = request.user
+    return {"message": f"Hola {user.username}, estás autenticado!"}
+
+# Otro endpoint protegido
+@app.get("/dashboard")
+@jwt_required
+def dashboard(request):
+    user = request.user
+    return {
+        "username": user.username, 
+        "email": user.email,
+        "msg": "Bienvenido al dashboard protegido"
+    }

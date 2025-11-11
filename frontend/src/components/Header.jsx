@@ -1,4 +1,4 @@
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function Header() {
@@ -17,7 +17,11 @@ function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <NavLink className="navbar-brand fw-bold" style={({ isActive }) => ({ color: isActive ? "red" : "white" })} to="/">
+        <NavLink
+          className="navbar-brand fw-bold"
+          style={({ isActive }) => ({ color: isActive ? "red" : "white" })}
+          to="/"
+        >
           🛍️ MyShop
         </NavLink>
         <button
@@ -31,28 +35,50 @@ function Header() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" style={({ isActive }) => ({ color: isActive ? "red" : "white" })} to="/">
+              <NavLink
+                className="nav-link"
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "white",
+                })}
+                to="/"
+              >
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" style={({ isActive }) => ({ color: isActive ? "red" : "white" })}  to="/productos">
+              <NavLink
+                className="nav-link"
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "white",
+                })}
+                to="/productos"
+              >
                 Productos
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                style={({ isActive }) => ({ color: isActive ? "red" : "white" })}
+                style={({ isActive }) => ({
+                  color: isActive ? "red" : "white",
+                })}
                 to="/contacto"
               >
                 Contacto
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/carrito" style={cartStyle} >
+              <NavLink className="nav-link" to="/carrito" style={cartStyle}>
                 {cart.length === 0 ? "" : cart.length}🛒
               </NavLink>
+            </li>
+
+            <li>
+              <div className="px-2">
+                  <NavLink className="btn btn-outline-light" to="/logout">
+                    Cerrar sesion
+                  </NavLink>
+              </div>
             </li>
           </ul>
         </div>

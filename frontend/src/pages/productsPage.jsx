@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../api/api";
+import { getProducts } from "../api/ProductsAPI";
 import { useCart } from "../context/CartContext";
+import { Link} from "react-router-dom";
 
 
 function ProductsPage() {
@@ -25,8 +26,8 @@ function ProductsPage() {
 
   if (loading) {
     return (
-      <div className="spinner-border text-primary container" role="status">
-        <span className="visually-hidden">Loading...</span>
+       <div className="text-center py-5">
+        <div className="spinner-border text-primary" role="status" />
       </div>
     );
   }
@@ -59,6 +60,8 @@ function ProductsPage() {
                 <p className="card-text">{product.description}</p>
                 <p className="card-text fw-bold mt-auto">${product.price}</p>
                 <button onClick={() => addToCart(product)} className="btn btn-primary mt-2">Agregar al carrito</button>
+                <Link to={`/productos/${product.id}`} className="btn btn-warning text-decoration-none text-white mt-2">Ver detalle</Link>
+                
               </div>
             </div>
           </div>

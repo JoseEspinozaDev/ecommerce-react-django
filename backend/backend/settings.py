@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w--fwnpz!^%e*bn9s&g*m47+)_dcnk52!8_+v&a1!jg1kt_0r$'
-
+JWT_ALGORITHM = "HS256"        # algoritmo para firmar tokens
+JWT_EXP_DELTA_SECONDS = 3600   # expiración en segundos (1 hora)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
