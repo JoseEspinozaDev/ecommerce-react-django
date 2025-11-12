@@ -10,10 +10,10 @@ export const registerSchema = z.object({
     email: z.string().email('Correo electronico invalido'),
     password: z
     .string()
-    .min(6,'La contraseña debe tener un minimo de 6 caracteres'),
+    .min(3,'La contraseña debe tener un minimo de 3 caracteres'),
     confirm_password: z.string(),
 
-}).refine((data) => data.password = data.confirm,{
+}).refine((data) => data.password === data.confirm_password,{
     message: 'Las contraseñas no coincididen',
-    path: 'confirm_password'
+    path: ['confirm_password']
 }) 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { registerSchema } from "../schemas/authSchema";
 import { register as registerUser } from "../api/auth";
 import { useState } from "react";
-
+import { Toaster, toast } from "react-hot-toast";
 function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -13,7 +13,11 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(registerSchema), mode:"onChange", reValidateMode:"onChange"});
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
+  });
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -25,29 +29,28 @@ function Register() {
         data.password,
         data.confirm_password
       );
-      const tokenStr = JSON.stringify(token);
-
+      console.log(res)
+    
       if (res?.success) {
         toast.success(res.message);
         localStorage.setItem("token", res.token);
-        navigate("/");
+        navigate("/login");
       } else {
-        toast.error(res?.message || "Error al registrar");
+        toast(res?.message || "Error al registrar usuario",{
+          icon: 'ℹ️'
+        });
       }
 
-      if (!token || tokenStr.includes("undefined")) {
-        toast.error("❌ Error al crear la cuenta");
-      }
     } catch (err) {
       toast.error("Error inesperado");
-      console.log(err);
-    }finally{
-        setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="container mt-5 col-md-4">
+      <Toaster position="top-center" reverseOrder={false} />
       <h2 className="text-center mb-4">Registro</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {["username", "email", "password", "confirm_password"].map((field) => (
@@ -64,8 +67,12 @@ function Register() {
           </div>
         ))}
 
-        <button disabled={loading} type="submit" className="btn btn-primary w-100">
-           {loading ? "Creando cuenta ..." : "Registrar"}
+        <button
+          disabled={loading}
+          type="submit"
+          className="btn btn-primary w-100"
+        >
+          {loading ? "Creando cuenta ..." : "Registrar"}
         </button>
       </form>
     </div>
