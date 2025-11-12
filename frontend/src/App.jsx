@@ -12,7 +12,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
-import logout from "./components/Logout";
+import Register from "./pages/Register";
 function App() {
   return (
     <AuthProvider>
@@ -21,7 +21,7 @@ function App() {
           <Routes>
             {/* Página pública sin Header */}
             <Route path="/login" element={<Login />} />
-
+            <Route path="/register" element={<Register/>} />
             {/* Todas las páginas protegidas con Header */}
             <Route
               element={

@@ -2,7 +2,7 @@ from ninja import NinjaAPI
 from ninja.security import HttpBearer
 from django.contrib.auth. models import User
 from django.contrib.auth import authenticate
-from .schemas import ProductSchema , ProductInSchema, ContactInSchema , UserSchema, TokenSchema
+from .schemas import ProductSchema , ProductInSchema, ContactInSchema , UserSchema, TokenSchema, RegisterResponse, RegisterSchema
 from .utilities import create_jwt_token , decode_jwt_token
 from .jwt_decorators import jwt_required
 
@@ -63,14 +63,22 @@ def create_client(request, data: ContactInSchema):
 ##Autenticacion
 
 #Registro
-@app.post('/register',response=TokenSchema)
-def register(request, data: UserSchema):
+@app.post('/register',response=RegisterResponse)
+def register(request, data: RegisterSchema):
     if User.objects.filter(username=data.username).exists():
-        return {'access': 'El usuario ya existe'}
+        return {'success': False, 'message':'El usuario ya existe en el sistema','token': None}
     
-    user = User.objects.create_user(username=data.username, password=data.password)
+    if User.objects.filter(email=data.email).exists():
+        return {'success': False,'message':'Corrreo electronico ya existente','token': None}
+    
+    if data.password !=  data.confirm_password:
+        return {'success': False, 'message': 'Las contraseñas no coinciden', 'token': token}
+    
+    
+    user = User.objects.create_user(username=data.username, email=data.email,password=data.password)
     token = create_jwt_token(user.id)
-    return{'access': token}
+    return{'success': True, 'message':'Usuario registrado correctamente', 'token': None}
+
 
 #Login
 @app.post('/login', response=TokenSchema)
@@ -81,6 +89,8 @@ def login(request, data: UserSchema):
     
     token = create_jwt_token(user.id)
     return {'access': token}
+
+
 
 
 # Endpoint protegido

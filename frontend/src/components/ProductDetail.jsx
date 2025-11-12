@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import { getProductDetail } from "../api/ProductDetailAPI";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
@@ -15,9 +15,7 @@ function ProductDetail() {
       console.log(id);
       try {
         const data = await getProductDetail(id);
-        if (data) {
-          setProduct(data);
-        }
+        setProduct(data);
       } catch (error) {
         console.log(error);
         throw error;
@@ -70,14 +68,14 @@ function ProductDetail() {
           >
             Agregar al carrito
           </button>
-          <h6 className="card-title text-secondary">
-            <Link
-              to={`/productos`}
-              className="btn btn-warning text-decoration-none text-white mt-2"
-            >
-              Volver
-            </Link>
-          </h6>
+              <h6 className="card-title text-secondary">
+          <Link
+            to={`/productos`}
+            className="btn btn-warning text-decoration-none text-white mt-2"
+          >
+            Volver
+          </Link>
+        </h6>
         </div>
       </div>
     </div>

@@ -29,3 +29,15 @@ class UserSchema(Schema):
 
 class TokenSchema(Schema):
     access: str
+    
+    
+class RegisterSchema(Schema):
+    username : str
+    password: str
+    confirm_password: str
+    email: str
+    
+class RegisterResponse(Schema):
+    success: bool
+    message: str
+    token: str | None = None

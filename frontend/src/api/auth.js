@@ -14,7 +14,7 @@ export const login = async (username, password) => {
   const resdata= response.data.access
   //alert(JSON.stringify(resdata))
   //console.log(response.data.access)
-  return response.data.access;
+  return  response.data.access;
 
 };
 
